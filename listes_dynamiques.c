@@ -3,8 +3,7 @@
 #include "stdint.h"
 
 Liste* initialiser() {
-   Liste* nouvelleListe = (Liste*) malloc(sizeof(Liste));
-   *nouvelleListe = (Liste) {.tete = NULL, .queue = NULL};
+   Liste* nouvelleListe = (Liste*) calloc(1, sizeof(Liste));
    return nouvelleListe;
 }
 
