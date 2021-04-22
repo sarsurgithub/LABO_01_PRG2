@@ -3,4 +3,6 @@ project(LABO_01_PRG2 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(LABO_01_PRG2 main.c)
+set(CMAKE_C_FLAGS "-Wall -Wextra -Wconversion -Wsign-conversion -pedantic")
+
+add_executable(LABO_01_PRG2 main.c listes_dynamiques.h listes_dynamiques.c)
