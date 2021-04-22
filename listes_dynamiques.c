@@ -14,6 +14,8 @@ bool estVide(const Liste* liste) {
 
 
 size_t longueur(const Liste* liste) {
+	if (liste->queue == NULL && liste->tete == NULL) return 0;
+	if (liste->queue == liste->tete) return 1;
    return (size_t) (liste->queue - liste->tete);
 }
 
@@ -28,11 +30,20 @@ Status insererEnTete(Liste* liste, const Info* info) {
    }
 
    *el = (Element) {
-      .info = info,
+      .info = *info,
       .suivant = liste->tete,
-      .precedent = longueur(liste) ?  : NULL
+      .precedent = NULL
    };
+
+	if (longueur(liste)) {
+		liste->tete->precedent = el;
+	} else {
+		// Liste vide
+		liste->queue = el;
+	}
+
    liste->tete = el;
+
    return OK;
 }
 

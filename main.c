@@ -4,9 +4,13 @@
 int main() {
    Liste* liste1Ptr = initialiser();
    Liste* liste2Ptr = initialiser();
-   printf("%d \n",estVide(liste1Ptr));
-   printf("%zu", longueur(liste1Ptr));
-   insererEnTete(liste2Ptr, (const Info *) 12);
-   insererEnTete(liste2Ptr, (const Info *) 13);
+
+   const Info info1 = 1;
+   const Info info2 = 2;
+   const Info info3 = 3;
+
+   insererEnTete(liste2Ptr, &info1);
+   insererEnTete(liste2Ptr, &info2);
+   insererEnTete(liste2Ptr, &info3);
    return 0;
 }
