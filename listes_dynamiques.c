@@ -47,11 +47,26 @@ Status insererEnTete(Liste* liste, const Info* info) {
 }
 
 Status insererEnQueue(Liste* liste, const Info* info) {
+    Element* el = (Element*) malloc(sizeof(Element));
+    if (el == NULL) return MEMOIRE_INSUFFISANTE;
 
+    *el = (Element) {
+        .info = *info,
+        .precedent = liste->queue,
+        .suivant = NULL
+    };
+
+    liste->queue->suivant, liste->queue = el;
+
+    return OK;
 }
 
 Status supprimerEnTete(Liste* liste, Info* info) {
+    liste->tete = liste->tete->suivant;
+    free(liste->tete);
+    // TODO: check a faire ???????
 
+    return OK;
 }
 
 Status supprimerEnQueue(Liste* liste, Info* info) {
