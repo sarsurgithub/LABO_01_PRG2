@@ -7,8 +7,12 @@
  Description    : Implémentation des diverses fonctions permettant la création
                   et l'édition d'une liste doublement chainée non circulaire
 
- Remarque(s)    : Nous ne tenons pas compte du cas où le paramètre "liste" serait
+ Remarque(s)    : 1) Nous ne tenons pas compte du cas où le paramètre "liste" serait
                   passé en tant que pointeur NULL.
+                  2) La fonction vider() a été implémentée de telle sorte que nous
+                  ne restituons pas la mémoire lorsqu'une liste est vidée entièrement
+                  afin de pouvoir la re-remplir si besoin. Il faut donc s'assurer
+                  de libérer la mémoire d'une liste en fin de programme.
 
  Compilateur    : Mingw-w64 g++ 8.1.0
                   Apple clang version 12.0.0 (clang-1200.0.32.29)
@@ -158,7 +162,6 @@ void supprimerSelonCritere(Liste *liste,
             actuel->suivant->precedent = actuel->precedent;
             actuel->precedent->suivant = actuel->suivant;
 
-            // TODO: BE SURE ABOUT THAT <<<<<<<< add comments
             free(actuel);
          }
       }
