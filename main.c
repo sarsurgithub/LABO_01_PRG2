@@ -29,6 +29,8 @@
  * @return bool
  */
 bool conditionSupression(size_t position, const Info *info);
+bool conditionSupressionPosition(size_t position, const Info *info);
+bool conditionSupressionInfo(size_t position, const Info *info);
 
 int main() {
    //-------------------------------------------------------------------------------
@@ -122,13 +124,34 @@ int main() {
           "des infos entre ]1,3]: ");
    afficher(liste2Ptr, FORWARD);
 
+   insererEnTete(liste2Ptr, &info1);
+   insererEnTete(liste2Ptr, &info2);
+   insererEnTete(liste2Ptr, &info3);
+
+   printf("\nEtat de liste2 : ");
+   afficher(liste2Ptr,FORWARD);
+
+   printf("\nSupression par critre de position: ");
+   supprimerSelonCritere(liste2Ptr, conditionSupressionPosition);
+   afficher(liste2Ptr,FORWARD);
+
+   printf("Supression par critre de info: ");
+   supprimerSelonCritere(liste2Ptr, conditionSupressionInfo);
+   afficher(liste2Ptr,FORWARD);
+
+
+
    //-------------------------------------------------------------------------------
    printf("\n-------------------------------------------------------------------\n");
    printf("Tests vider() et sontEgales()");
    printf("\n-------------------------------------------------------------------\n");
 
+   printf("\nTentative de vider liste2 avec une position trop grande: ");
+   vider(liste2Ptr, 12);
+   afficher(liste2Ptr,FORWARD);
+
    vider(liste2Ptr, 0);
-   printf("/nListe2 apres avoir ete videe depuis la position 0 : ");
+   printf("\nListe2 apres avoir ete videe depuis la position 0 : ");
    afficher(liste2Ptr, FORWARD);
 
    printf("\nEtat actuel de Liste1 : ");
@@ -217,6 +240,14 @@ int main() {
 
 bool conditionSupression(size_t position, const Info *info) {
    if (position % 2 == 0 && *info > 1 && *info <= 3) return true;
+   return false;
+}
+bool conditionSupressionPosition(size_t position, const Info *info) {
+   if (position % 2 == 0) return true;
+   return false;
+}
+bool conditionSupressionInfo(size_t position, const Info *info) {
+   if (*info > 3) return true;
    return false;
 }
 
